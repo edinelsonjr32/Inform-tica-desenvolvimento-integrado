@@ -1,0 +1,119 @@
+{
+  "name": "SISCOPN \u2014 IFPA 2026.2",
+  "image": "mcr.microsoft.com/devcontainers/php:8.4",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker": {
+      "moby": false
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        "usernamehw.errorlens",
+        "christian-kohler.path-intellisense",
+        "formulahendry.auto-rename-tag",
+        "PKief.material-icon-theme",
+        "bierner.markdown-mermaid",
+        "ckolkman.vscode-mermaid-editor",
+        "bmewburn.vscode-intelephense-client",
+        "ikappas.composer",
+        "onecentlin.laravel-blade",
+        "codingyu.laravel-goto-view",
+        "stef-k.laravel-goto-controller",
+        "ryannaddy.laravel-artisan",
+        "phpartisan.phpcs",
+        "junstyle.php-cs-fixer",
+        "xdebug.php-debug",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "dsznajder.es7-react-js-snippets",
+        "expo.vscode-expo-tools"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit",
+          "source.organizeImports": "explicit"
+        },
+        "editor.bracketPairColorization.enabled": true,
+        "editor.fontSize": 14,
+        "terminal.integrated.fontFamily": "MesloLGS NF, Consolas, \"Courier New\", monospace",
+        "editor.lineHeight": 1.6,
+        "editor.wordWrap": "on",
+        "editor.tabSize": 4,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "files.eol": "\n",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.fontSize": 13,
+        "workbench.colorTheme": "Default Dark+",
+        "workbench.iconTheme": "material-icon-theme",
+        "telemetry.telemetryLevel": "off",
+        "git.enableSmartCommit": true,
+        "git.autofetch": true,
+        "[php]": {
+          "editor.defaultFormatter": "junstyle.php-cs-fixer"
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescriptreact]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "emmet.includeLanguages": {
+          "blade": "html"
+        },
+        "phpcs.standard": "PSR12"
+      }
+    }
+  },
+  "forwardPorts": [
+    8000,
+    3306,
+    8025,
+    8080,
+    19006,
+    4040
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "Laravel (php artisan serve)",
+      "onAutoForward": "openBrowser"
+    },
+    "3306": {
+      "label": "MySQL"
+    },
+    "8025": {
+      "label": "MailHog"
+    },
+    "8080": {
+      "label": "phpMyAdmin"
+    },
+    "19006": {
+      "label": "Expo Dev Server"
+    },
+    "4040": {
+      "label": "ngrok Dashboard"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "containerEnv": {
+    "XDEBUG_MODE": "off",
+    "XDEBUG_SESSION": "",
+    "PHP_IDE_CONFIG": ""
+  },
+  "remoteUser": "vscode"
+}

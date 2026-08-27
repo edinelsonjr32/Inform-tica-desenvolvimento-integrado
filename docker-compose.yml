@@ -1,0 +1,49 @@
+services:
+  db:
+    image: mysql:8
+    container_name: siscopn-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: siscopn
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: siscopn-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: siscopn-mailhog
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: siscopn-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_ROOT_PASSWORD: root
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  dbdata:
